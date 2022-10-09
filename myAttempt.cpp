@@ -4,71 +4,71 @@
 #include <chrono>
 
 using namespace std;
-
-class Garfo{
-    public:
-    mutex mutexGarfo;
-};
+using namespace std::chrono;
+using namespace std::chrono_literals;
 
 class Filosofo{
-    int num;
     public:
-    Filosofo(int num)
-    {
-        this->num = num;
-    }
-    void estiloDeVida(Garfo& gl, Garfo& gr)
-    {
-        while(1)
-        {
-            //Pensar
-            int tempoPensando = rand()%(1001); // Leva ate 1 segundo pensando
-            cout << "Filosofo " << num << " pensando.\n";
-            this_thread::sleep_for(chrono::milliseconds(tempoPensando));
-            // Comer
-            comer(gl, gr);
+        int id;
+        std::mutex* m1;
+        std::mutex* m2;
+        Filosofo(int id, std::mutex *m1, std::mutex *m2){
+            this->id = id;
+            this->m1 = m1;
+            this->m2 = m2;
         }
-    }
+        void comer(){
+            while(true){
+                pensar();
+                m1->lock();
+                m2->lock();
+                cout << "Filosofo " << id << " comendo" << endl;
+                this_thread::sleep_for(chrono::milliseconds(1000));
+                m1->unlock();
+                m2->unlock();
+            }
+        }
+        void pensar(){
+            cout << "Filosofo " << id << " pensando" << endl;
+            this_thread::sleep_for(chrono::milliseconds(1000));
+        }
+    
+    
 };
-
-void comer(Garfo& gl, Garfo& gr, int numFil)
-{
-    int tempoComendo = rand()%(1001);
-    std::unique_lock<std::mutex> lockEsq(gl.mutexGarfo);
-    std::unique_lock<std::mutex> lockDir(gr.mutexGarfo);
-    cout << "Filosofo " << num << " esta comendo.\n";
-    this_thread::sleep_for(chrono::milliseconds(tempoComendo));
-    cout << "Filosofo " << num << " comeu.\n";
-    lockEsq.release();
-    lockDir.release();
-}
 
 int main()
 {
-    Garfo garfo1 = Garfo();
-    Garfo garfo2 = Garfo();
-    Garfo garfo3 = Garfo();
-    Garfo garfo4 = Garfo();
-    Garfo garfo5 = Garfo();
+    mutex garfos[5];
 
-    Filosofo fil1 = Filosofo(1);
-    Filosofo fil2 = Filosofo(2);
-    Filosofo fil3 = Filosofo(3);
-    Filosofo fil4 = Filosofo(4);
-    Filosofo fil5 = Filosofo(5);
+    Filosofo f1(0, &garfos[4], &garfos[1]);
+    Filosofo f2(1, &garfos[0], &garfos[2]);
+    Filosofo f3(2, &garfos[1], &garfos[3]);
+    Filosofo f4(3, &garfos[2], &garfos[4]);
+    Filosofo f5(4, &garfos[0], &garfos[3]);
 
-    thread T1(fil1.estiloDeVida(garfo5, garfo2));
-    thread T2(fil2.estiloDeVida(garfo1, garfo3));
-    thread T3(fil3.estiloDeVida(garfo2, garfo4));
-    thread T4(fil4.estiloDeVida(garfo3, garfo5));
-    thread T5(fil5.estiloDeVida(garfo4, garfo1));
+    
+    Filosofo filosofos[5] = {
+        f1,f2,f3,f4,f5
+    };
 
-    T1.join();
-    T2.join();
-    T3.join();
-    T4.join();
-    T5.join();
+    std::thread threadsFilosofos[5] = {
+        std::thread(&Filosofo::comer, &filosofos[0]),
+        std::thread(&Filosofo::comer, &filosofos[1]),
+        std::thread(&Filosofo::comer, &filosofos[2]),
+        std::thread(&Filosofo::comer, &filosofos[3]),
+        std::thread(&Filosofo::comer, &filosofos[4])
+    };
+
+    /*threads[0] = thread(&Filosofo::comer, &filosofos[0]);
+    threads[1] = thread(&Filosofo::comer, &filosofos[1]);
+    threads[2] = thread(&Filosofo::comer, &filosofos[2]);
+    threads[3] = thread(&Filosofo::comer, &filosofos[3]);
+    threads[4] = thread(&Filosofo::comer, &filosofos[4]);
+    */
+    
+    for(int i = 0; i < 5; i++){
+        threadsFilosofos[i].join();
+    }
 
     return 0;
-
 }
