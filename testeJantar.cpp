@@ -36,7 +36,7 @@ class Filosofo{
             std::chrono::time_point<std::chrono::system_clock> start, agora;
             std::chrono::duration<double> elapsed_seconds;
             start = std::chrono::system_clock::now();
-            while(elapsed_seconds.count() <= 30)
+            while(elapsed_seconds.count() <= 300)
             {
                 pensa();
                 pegarGarfos();
