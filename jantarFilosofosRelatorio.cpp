@@ -11,14 +11,14 @@ class Filosofo{
         long vezesComeu;
         long vezesPensou;
     public:
-        std::mutex* m1; // Garfo da esquerda    
-        std::mutex* m2;// Garfo da direita
+        std::mutex* m1; // Garfo da direita   
+        std::mutex* m2;// Garfo da esquerda
         //Construtor do filosofo
-        Filosofo(int id, std::mutex* garfoEsq, std::mutex* garfoDir)
+        Filosofo(int id, std::mutex* garfoDir, std::mutex* garfoEsq)
         {
             this->id = id;
-            this->m1 = garfoEsq;
-            this->m2 = garfoDir;
+            this->m1 = garfoDir;
+            this->m2 = garfoEsq;
             vezesComeu = 0;
             vezesPensou = 0;
         }
