@@ -75,6 +75,7 @@ void addProc(CQueue* q, char* nome, int time, pontFunc f)
 
 void execProc(CQueue* q)
 {
+    if(isEmpty(q))return;
     //Executa o primeiro processo na fila, ou seja, o processo na head
     (*q->arr[q->head].myFunction)();
     //Espera pelo tempo determinado pela struct
