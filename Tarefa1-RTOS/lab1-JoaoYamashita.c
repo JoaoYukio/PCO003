@@ -79,7 +79,7 @@ void execProc(CQueue* q)
     //Executa o primeiro processo na fila, ou seja, o processo na head
     (*q->arr[q->head].myFunction)();
     //Espera pelo tempo determinado pela struct
-    _sleep(1000*q->arr[q->head].time);//Tempo em ms
+    //_sleep(1000*q->arr[q->head].time);//Tempo em ms
 }
 
 void RemoveProc(CQueue* q)
