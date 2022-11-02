@@ -54,15 +54,19 @@ int main(void)
     kernelInit();
     process p1;
     p1.func = &processo1;
+    p1.priority = 2;
 
     process p2;
     p2.func = &processo2;
+    p2.priority = 3;
 
     process p3;
     p3.func = &processo3;
+    p3.priority = 1;
 
     process p4;
     p4.func = &processo4;
+    p4.priority = 1;
 
     kernelAddProc(&p1);
     kernelAddProc(&p2);

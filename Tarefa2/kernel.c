@@ -1,4 +1,6 @@
 #include "kernel.h"
+
+// TODO: Tentar usar uma lista de adjacencias para reduzir o custo para achar processo para O(1)
 #define POOL_SIZE 10
 process * pool[POOL_SIZE];
 int start, end;
@@ -19,33 +21,32 @@ char kernelAddProc(process * newProc){
 
 void kernelLoop(void){
     for(;;){
-            //Do we have any process to execute?
-            if (start != end){
-                //check if there's a process with higher priority
-                int pont = start;
-                int count = 0;
-                int maxPrio = pool[start]->priority;
-                process* maxPrioProcess = pool[start];
-                while(pont != end)
+        //Do we have any process to execute?
+        if (start != end){
+            //check if there's a process with higher priority
+            int pont = start;
+            int maxPrio = pool[start]->priority;
+            int maxPrioCount = start;
+            while(pont != end)
+            {
+                if(pool[pont]->priority > maxPrio)
                 {
-                    if(pool[pont]->priority > maxPrio)
-                    {
-                        maxPrio = pool[pont]->priority;
-                        maxPrioProcess = pool[pont];
-                    }
-                    count++;
+                    maxPrio = pool[pont]->priority;
+                    maxPrioCount = pont;
                 }
-                //swap
-                process* temp = pool[start];
-                pool[start] = maxPrioProcess;
-                pool[count] = temp;
-
-                //check if there is need to reschedule
-                if (pool[start]->func() == REPEAT){
-                    kernelAddProc(pool[start]);
-                }
-                //prepare to get the next process; 
-                start = (start+1)%POOL_SIZE;
+                pont = (pont+1)%POOL_SIZE;;
             }
-}
+            //swap 
+            process* temp = pool[start];
+            pool[start] = pool[maxPrioCount];
+            pool[maxPrioCount] = temp;
+
+            //check if there is need to reschedule
+            if (pool[start]->func() == REPEAT){
+                kernelAddProc(pool[start]);
+            }
+            //prepare to get the next process; 
+            start = (start+1)%POOL_SIZE;
+        }
+    }
 }
