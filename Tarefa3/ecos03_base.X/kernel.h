@@ -23,6 +23,7 @@ typedef struct {
     ptrFunc function;
     int period;
     int start;
+    int prio;
 } process;
 
 

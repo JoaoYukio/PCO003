@@ -4449,6 +4449,7 @@ typedef struct {
 ptrFunc function;
 int period;
 int start;
+int prio;
 } process;
 
 
@@ -4541,14 +4542,11 @@ void main(void) {
 
 
 
-process init_PD = {initPORTAD, 0, 0};
+process init_PD = {initPORTAD, 0, 0, 15};
 
-# 83
-process ProcLedF = {toggle4F, 100, 0};
-process ProcLedL = {toggle4L, 200, 0};
-
-process SSDUpdate_proc = {updateSSD, 1, 0};
-process countTime_proc = {countTime, 100, 0};
+# 86
+process SSDUpdate_proc = {updateSSD, 1, 0, 10};
+process countTime_proc = {countTime, 100, 0, 5};
 
 timerInit();
 ssdInit();
@@ -4559,10 +4557,7 @@ ssdInit();
 kernelInit();
 kernelAddProc(&init_PD);
 
-
-kernelAddProc(&ProcLedL);
-kernelAddProc(&ProcLedF);
-
+# 102
 kernelAddProc(&SSDUpdate_proc);
 kernelAddProc(&countTime_proc);
 

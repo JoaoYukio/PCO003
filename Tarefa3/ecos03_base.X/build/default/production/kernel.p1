@@ -1,18 +1,19 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F2 `(uc ~T0 @X0 0 tf ]
 "22 kernel.h
-[s S1 `*F2 1 `i 1 `i 1 ]
-[n S1 . function period start ]
+[s S1 `*F2 1 `i 1 `i 1 `i 1 ]
+[n S1 . function period start prio ]
 [; ;kernel.h: 18: typedef char (*ptrFunc)(void);
 [; ;kernel.h: 22: typedef struct {
 [; ;kernel.h: 23: ptrFunc function;
 [; ;kernel.h: 24: int period;
 [; ;kernel.h: 25: int start;
-[; ;kernel.h: 26: } process;
-[; ;kernel.h: 30: char kernelInit(void);
-[; ;kernel.h: 31: char kernelAddProc(process* newProc);
-[; ;kernel.h: 32: void kernelLoop(void);
-[; ;kernel.h: 34: void KernelClock(void);
+[; ;kernel.h: 26: int prio;
+[; ;kernel.h: 27: } process;
+[; ;kernel.h: 31: char kernelInit(void);
+[; ;kernel.h: 32: char kernelAddProc(process* newProc);
+[; ;kernel.h: 33: void kernelLoop(void);
+[; ;kernel.h: 35: void KernelClock(void);
 [; ;xc8\pic\include\proc\pic18f4520.h: 53: extern volatile unsigned char PORTA __at(0xF80);
 "55 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;xc8\pic\include\proc\pic18f4520.h: 55: asm("PORTA equ 0F80h");
@@ -2779,209 +2780,261 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xc8\pic\include\proc\pic18f4520.h: 8853: extern volatile __bit nW __at(0x7E3A);
 [; ;xc8\pic\include\proc\pic18f4520.h: 8856: extern volatile __bit nWR __at(0x7C21);
 [; ;xc8\pic\include\proc\pic18f4520.h: 8859: extern volatile __bit nWRITE __at(0x7E3A);
-"4 kernel.c
+[; ;xc8\pic\include\__size_t.h: 4: typedef unsigned size_t;
+[; ;stdlib.h: 7: typedef unsigned short wchar_t;
+[; ;stdlib.h: 15: typedef struct {
+[; ;stdlib.h: 16: int rem;
+[; ;stdlib.h: 17: int quot;
+[; ;stdlib.h: 18: } div_t;
+[; ;stdlib.h: 19: typedef struct {
+[; ;stdlib.h: 20: unsigned rem;
+[; ;stdlib.h: 21: unsigned quot;
+[; ;stdlib.h: 22: } udiv_t;
+[; ;stdlib.h: 23: typedef struct {
+[; ;stdlib.h: 24: long quot;
+[; ;stdlib.h: 25: long rem;
+[; ;stdlib.h: 26: } ldiv_t;
+[; ;stdlib.h: 27: typedef struct {
+[; ;stdlib.h: 28: unsigned long quot;
+[; ;stdlib.h: 29: unsigned long rem;
+[; ;stdlib.h: 30: } uldiv_t;
+[; ;stdlib.h: 65: extern double atof(const char *);
+[; ;stdlib.h: 66: extern double strtod(const char *, const char **);
+[; ;stdlib.h: 67: extern int atoi(const char *);
+[; ;stdlib.h: 68: extern unsigned xtoi(const char *);
+[; ;stdlib.h: 69: extern long atol(const char *);
+[; ;stdlib.h: 73: extern long strtol(const char *, char **, int);
+[; ;stdlib.h: 75: extern int rand(void);
+[; ;stdlib.h: 76: extern void srand(unsigned int);
+[; ;stdlib.h: 77: extern void * calloc(size_t, size_t);
+[; ;stdlib.h: 78: extern div_t div(int numer, int denom);
+[; ;stdlib.h: 79: extern udiv_t udiv(unsigned numer, unsigned denom);
+[; ;stdlib.h: 80: extern ldiv_t ldiv(long numer, long denom);
+[; ;stdlib.h: 81: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+[; ;stdlib.h: 85: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 86: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 87: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 88: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 93: extern void * malloc(size_t);
+[; ;stdlib.h: 94: extern void free(void *);
+[; ;stdlib.h: 95: extern void * realloc(void *, size_t);
+[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
+[; ;stdlib.h: 104: extern int atexit(void (*)(void));
+[; ;stdlib.h: 105: extern char * getenv(const char *);
+[; ;stdlib.h: 106: extern char ** environ;
+[; ;stdlib.h: 107: extern int system(char *);
+[; ;stdlib.h: 108: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+[; ;stdlib.h: 109: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+[; ;stdlib.h: 110: extern int abs(int);
+[; ;stdlib.h: 111: extern long labs(long);
+[; ;stdlib.h: 113: extern char * itoa(char * buf, int val, int base);
+[; ;stdlib.h: 114: extern char * utoa(char * buf, unsigned val, int base);
+[; ;stdlib.h: 119: extern char * ltoa(char * buf, long val, int base);
+[; ;stdlib.h: 120: extern char * ultoa(char * buf, unsigned long val, int base);
+[; ;stdlib.h: 122: extern char * ftoa(float f, int * status);
+"5 kernel.c
 [v _pool `*S1 ~T0 @X0 -> 10 `i e ]
-[; ;kernel.c: 4: process* pool[10];
-"5
+[; ;kernel.c: 5: process* pool[10];
+"6
 [v _start `uc ~T0 @X0 1 e ]
 [v _end `uc ~T0 @X0 1 e ]
-[; ;kernel.c: 5: char start, end;
-"7
+[; ;kernel.c: 6: char start, end;
+"8
 [v _kernelInit `(uc ~T0 @X0 1 ef ]
 {
-[; ;kernel.c: 7: char kernelInit(void) {
+[; ;kernel.c: 8: char kernelInit(void) {
 [e :U _kernelInit ]
 [f ]
-[; ;kernel.c: 8: start = 0;
-"8
-[e = _start -> -> 0 `i `uc ]
-[; ;kernel.c: 9: end = 0;
+[; ;kernel.c: 9: start = 0;
 "9
-[e = _end -> -> 0 `i `uc ]
-[; ;kernel.c: 10: return 0;
+[e = _start -> -> 0 `i `uc ]
+[; ;kernel.c: 10: end = 0;
 "10
-[e ) -> -> 0 `i `uc ]
-[e $UE 277  ]
-[; ;kernel.c: 11: }
+[e = _end -> -> 0 `i `uc ]
+[; ;kernel.c: 11: return 0;
 "11
-[e :UE 277 ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 281  ]
+[; ;kernel.c: 12: }
+"12
+[e :UE 281 ]
 }
-"13
+"14
 [v _kernelAddProc `(uc ~T0 @X0 1 ef1`*S1 ]
 {
-[; ;kernel.c: 13: char kernelAddProc(process* newProc) {
+[; ;kernel.c: 14: char kernelAddProc(process* newProc) {
 [e :U _kernelAddProc ]
 [v _newProc `*S1 ~T0 @X0 1 r1 ]
 [f ]
-[; ;kernel.c: 15: if (((end + 1) % 10) != start) {
-"15
-[e $ ! != % + -> _end `i -> 1 `i -> 10 `i -> _start `i 279  ]
-{
-[; ;kernel.c: 16: pool[end] = newProc;
+[; ;kernel.c: 16: if (((end + 1) % 10) != start) {
 "16
-[e = *U + &U _pool * -> _end `ux -> -> # *U &U _pool `ui `ux _newProc ]
-[; ;kernel.c: 17: pool[end]->start += newProc->period;
+[e $ ! != % + -> _end `i -> 1 `i -> 10 `i -> _start `i 283  ]
+{
+[; ;kernel.c: 17: pool[end] = newProc;
 "17
-[e =+ . *U *U + &U _pool * -> _end `ux -> -> # *U &U _pool `ui `ux 2 . *U _newProc 1 ]
-[; ;kernel.c: 18: end = (end + 1) % 10;
+[e = *U + &U _pool * -> _end `ux -> -> # *U &U _pool `ui `ux _newProc ]
+[; ;kernel.c: 18: pool[end]->start += newProc->period;
 "18
-[e = _end -> % + -> _end `i -> 1 `i -> 10 `i `uc ]
-[; ;kernel.c: 19: return 0;
+[e =+ . *U *U + &U _pool * -> _end `ux -> -> # *U &U _pool `ui `ux 2 . *U _newProc 1 ]
+[; ;kernel.c: 19: end = (end + 1) % 10;
 "19
-[e ) -> -> 0 `i `uc ]
-[e $UE 278  ]
+[e = _end -> % + -> _end `i -> 1 `i -> 10 `i `uc ]
+[; ;kernel.c: 20: return 0;
 "20
-}
-[e :U 279 ]
-[; ;kernel.c: 20: }
-[; ;kernel.c: 21: return 1;
+[e ) -> -> 0 `i `uc ]
+[e $UE 282  ]
 "21
-[e ) -> -> 1 `i `uc ]
-[e $UE 278  ]
-[; ;kernel.c: 22: }
-"22
-[e :UE 278 ]
 }
-"24
+[e :U 283 ]
+[; ;kernel.c: 21: }
+[; ;kernel.c: 22: return 1;
+"22
+[e ) -> -> 1 `i `uc ]
+[e $UE 282  ]
+[; ;kernel.c: 23: }
+"23
+[e :UE 282 ]
+}
+"25
 [v _kernelLoop `(v ~T0 @X0 1 ef ]
 {
-[; ;kernel.c: 24: void kernelLoop(void) {
+[; ;kernel.c: 25: void kernelLoop(void) {
 [e :U _kernelLoop ]
 [f ]
-"25
+"26
 [v _next `uc ~T0 @X0 1 a ]
 [v _p `uc ~T0 @X0 1 a ]
-"26
-[v _tempProc `*S1 ~T0 @X0 1 a ]
-[; ;kernel.c: 25: char next, p;
-[; ;kernel.c: 26: process * tempProc;
-[; ;kernel.c: 27: for (;;) {
 "27
+[v _tempProc `*S1 ~T0 @X0 1 a ]
+[; ;kernel.c: 26: char next, p;
+[; ;kernel.c: 27: process * tempProc;
+[; ;kernel.c: 28: for (;;) {
+"28
 {
-[e :U 281 ]
-{
-[; ;kernel.c: 29: if (start != end) {
-"29
-[e $ ! != -> _start `i -> _end `i 284  ]
-{
-[; ;kernel.c: 31: next = start;
-"31
-[e = _next _start ]
-[; ;kernel.c: 32: for (p = start; p != end; p = (p + 1) % 10) {
-"32
-{
-[e = _p _start ]
-[e $U 288  ]
 [e :U 285 ]
 {
-[; ;kernel.c: 33: if (pool[p]->start < pool[next]->start) {
+[; ;kernel.c: 30: if (start != end) {
+"30
+[e $ ! != -> _start `i -> _end `i 288  ]
+{
+[; ;kernel.c: 33: next = start;
 "33
-[e $ ! < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 289  ]
-{
-[; ;kernel.c: 34: next = p;
-"34
-[e = _next _p ]
-"35
-}
-[e :U 289 ]
-"36
-}
-"32
-[e = _p -> % + -> _p `i -> 1 `i -> 10 `i `uc ]
-[e :U 288 ]
-[e $ != -> _p `i -> _end `i 285  ]
-[e :U 286 ]
-"36
-}
-[; ;kernel.c: 35: }
-[; ;kernel.c: 36: }
-[; ;kernel.c: 38: tempProc = pool[next];
-"38
-[e = _tempProc *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux ]
-[; ;kernel.c: 39: pool[next] = pool[start];
+[e = _next _start ]
+[; ;kernel.c: 39: for (p = start; p != end; p = (p + 1) % 10) {
 "39
-[e = *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
-[; ;kernel.c: 40: pool[start] = tempProc;
+{
+[e = _p _start ]
+[e $U 292  ]
+[e :U 289 ]
+{
+[; ;kernel.c: 40: if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
 "40
-[e = *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux _tempProc ]
-[; ;kernel.c: 43: while (pool[start]->start > 0) {
-"43
-[e $U 290  ]
-[e :U 291 ]
+[e $ ! && > . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 3 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 3 < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 293  ]
 {
-"45
-}
-[e :U 290 ]
-"43
-[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 291  ]
-[e :U 292 ]
-[; ;kernel.c: 45: }
-[; ;kernel.c: 46: if (pool[start]->function() == 2) {
-"46
-[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 293  ]
-{
-[; ;kernel.c: 47: kernelAddProc(pool[start]);
-"47
-[e ( _kernelAddProc (1 *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
-"48
+[; ;kernel.c: 41: next = p;
+"41
+[e = _next _p ]
+"42
 }
 [e :U 293 ]
-[; ;kernel.c: 48: }
-[; ;kernel.c: 49: start = (start + 1) % 10;
-"49
-[e = _start -> % + -> _start `i -> 1 `i -> 10 `i `uc ]
-"50
+"43
 }
-[e :U 284 ]
-"52
+"39
+[e = _p -> % + -> _p `i -> 1 `i -> 10 `i `uc ]
+[e :U 292 ]
+[e $ != -> _p `i -> _end `i 289  ]
+[e :U 290 ]
+"43
 }
-[; ;kernel.c: 50: }
-[; ;kernel.c: 52: }
-[e $U 281  ]
-[e :U 282 ]
-}
-[; ;kernel.c: 53: }
-"53
-[e :UE 280 ]
-}
-"57
-[v _KernelClock `(v ~T0 @X0 1 ef ]
-{
-[; ;kernel.c: 57: void KernelClock(void) {
-[e :U _KernelClock ]
-[f ]
-"58
-[v _proc `uc ~T0 @X0 1 a ]
-[; ;kernel.c: 58: unsigned char proc;
-[; ;kernel.c: 59: for (proc = start; proc != end; proc = (proc + 1) % 10) {
-"59
-{
-[e = _proc _start ]
-[e $U 298  ]
+[; ;kernel.c: 42: }
+[; ;kernel.c: 43: }
+[; ;kernel.c: 46: tempProc = pool[next];
+"46
+[e = _tempProc *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux ]
+[; ;kernel.c: 47: pool[next] = pool[start];
+"47
+[e = *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
+[; ;kernel.c: 48: pool[start] = tempProc;
+"48
+[e = *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux _tempProc ]
+[; ;kernel.c: 51: while (pool[start]->start > 0) {
+"51
+[e $U 294  ]
 [e :U 295 ]
 {
-[; ;kernel.c: 60: if ((pool[proc]->start)>(-30000)) {
-"60
-[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 299  ]
-{
-[; ;kernel.c: 61: pool[proc]->start--;
-"61
-[e -- . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -> 1 `i ]
-"62
+"53
 }
-[e :U 299 ]
-"63
-}
-"59
-[e = _proc -> % + -> _proc `i -> 1 `i -> 10 `i `uc ]
-[e :U 298 ]
-[e $ != -> _proc `i -> _end `i 295  ]
+[e :U 294 ]
+"51
+[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 295  ]
 [e :U 296 ]
-"63
+[; ;kernel.c: 53: }
+[; ;kernel.c: 54: if (pool[start]->function() == 2) {
+"54
+[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 297  ]
+{
+[; ;kernel.c: 55: kernelAddProc(pool[start]);
+"55
+[e ( _kernelAddProc (1 *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
+"56
 }
-[; ;kernel.c: 62: }
-[; ;kernel.c: 63: }
-[; ;kernel.c: 64: }
-"64
-[e :UE 294 ]
+[e :U 297 ]
+[; ;kernel.c: 56: }
+[; ;kernel.c: 57: start = (start + 1) % 10;
+"57
+[e = _start -> % + -> _start `i -> 1 `i -> 10 `i `uc ]
+"58
+}
+[e :U 288 ]
+"60
+}
+[; ;kernel.c: 58: }
+[; ;kernel.c: 60: }
+[e $U 285  ]
+[e :U 286 ]
+}
+[; ;kernel.c: 61: }
+"61
+[e :UE 284 ]
+}
+"65
+[v _KernelClock `(v ~T0 @X0 1 ef ]
+{
+[; ;kernel.c: 65: void KernelClock(void) {
+[e :U _KernelClock ]
+[f ]
+"66
+[v _proc `uc ~T0 @X0 1 a ]
+[; ;kernel.c: 66: unsigned char proc;
+[; ;kernel.c: 67: for (proc = start; proc != end; proc = (proc + 1) % 10) {
+"67
+{
+[e = _proc _start ]
+[e $U 302  ]
+[e :U 299 ]
+{
+[; ;kernel.c: 68: if ((pool[proc]->start)>(-30000)) {
+"68
+[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 303  ]
+{
+[; ;kernel.c: 69: pool[proc]->start--;
+"69
+[e -- . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -> 1 `i ]
+"70
+}
+[e :U 303 ]
+"71
+}
+"67
+[e = _proc -> % + -> _proc `i -> 1 `i -> 10 `i `uc ]
+[e :U 302 ]
+[e $ != -> _proc `i -> _end `i 299  ]
+[e :U 300 ]
+"71
+}
+[; ;kernel.c: 70: }
+[; ;kernel.c: 71: }
+[; ;kernel.c: 72: }
+"72
+[e :UE 298 ]
 }

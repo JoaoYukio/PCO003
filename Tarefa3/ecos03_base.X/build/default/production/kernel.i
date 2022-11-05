@@ -10,6 +10,7 @@ typedef struct {
 ptrFunc function;
 int period;
 int start;
+int prio;
 } process;
 
 
@@ -4419,7 +4420,88 @@ extern volatile __bit nWR __at(0x7C21);
 
 extern volatile __bit nWRITE __at(0x7E3A);
 
-# 4 "kernel.c"
+# 4 "C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\__size_t.h"
+typedef unsigned size_t;
+
+# 7 "C:\Program Files\Microchip\xc8\v2.40\pic\include\c90\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 65
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+
+# 73
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+
+# 85
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+
+# 13 "C:\Program Files\Microchip\xc8\v2.40\pic\include\c90\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+
+# 104 "C:\Program Files\Microchip\xc8\v2.40\pic\include\c90\stdlib.h"
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 5 "kernel.c"
 process* pool[10];
 char start, end;
 
@@ -4447,12 +4529,16 @@ for (;;) {
 
 if (start != end) {
 
+
 next = start;
+
+# 39
 for (p = start; p != end; p = (p + 1) % 10) {
-if (pool[p]->start < pool[next]->start) {
+if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
 next = p;
 }
 }
+
 
 tempProc = pool[next];
 pool[next] = pool[start];

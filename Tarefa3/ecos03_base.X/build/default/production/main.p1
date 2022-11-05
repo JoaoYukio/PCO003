@@ -5,7 +5,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
 "6259
 [v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
-"34 kernel.h
+"35 kernel.h
 [v _KernelClock `(v ~T0 @X0 0 ef ]
 "633 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
@@ -18,19 +18,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 [v F2354 `(uc ~T0 @X0 0 tf ]
 "22 kernel.h
-[s S276 `*F2354 1 `i 1 `i 1 ]
-[n S276 . function period start ]
+[s S276 `*F2354 1 `i 1 `i 1 `i 1 ]
+[n S276 . function period start prio ]
 "27 timer.h
 [v _timerInit `(v ~T0 @X0 0 ef ]
 "24 ssd.h
 [v _ssdInit `(v ~T0 @X0 0 ef ]
-"30 kernel.h
+"31 kernel.h
 [v _kernelInit `(uc ~T0 @X0 0 ef ]
-"31
+"32
 [v _kernelAddProc `(uc ~T0 @X0 0 ef1`*S276 ]
 "5655 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [v _RCON `Vuc ~T0 @X0 0 e@4048 ]
-"32 kernel.h
+"33 kernel.h
 [v _kernelLoop `(v ~T0 @X0 0 ef ]
 "26 config.h
 [p x OSC=HS ]
@@ -2871,11 +2871,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kernel.h: 23: ptrFunc function;
 [; ;kernel.h: 24: int period;
 [; ;kernel.h: 25: int start;
-[; ;kernel.h: 26: } process;
-[; ;kernel.h: 30: char kernelInit(void);
-[; ;kernel.h: 31: char kernelAddProc(process* newProc);
-[; ;kernel.h: 32: void kernelLoop(void);
-[; ;kernel.h: 34: void KernelClock(void);
+[; ;kernel.h: 26: int prio;
+[; ;kernel.h: 27: } process;
+[; ;kernel.h: 31: char kernelInit(void);
+[; ;kernel.h: 32: char kernelAddProc(process* newProc);
+[; ;kernel.h: 33: void kernelLoop(void);
+[; ;kernel.h: 35: void KernelClock(void);
 [; ;timer.h: 23: char timerEnded(void);
 [; ;timer.h: 24: void timerWait(void);
 [; ;timer.h: 26: void timerReset(unsigned int tempo);
@@ -2884,9 +2885,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ssd.h: 23: void ssdUpdate(void);
 [; ;ssd.h: 24: void ssdInit(void);
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-[v F2386 `(v ~T0 @X0 1 tf ]
+[v F2387 `(v ~T0 @X0 1 tf ]
 "10 main.c
-[v _ISR `IF2386 ~T0 @X0 1 e ]
+[v _ISR `IF2387 ~T0 @X0 1 e ]
 {
 [; ;main.c: 10: void __interrupt ISR(void) {
 [e :U _ISR ]
@@ -3069,74 +3070,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "79
 [v _init_PD `S276 ~T0 @X0 1 a ]
-[v F2404 `S276 ~T0 @X0 1 s ]
-[i F2404
+[v F2405 `S276 ~T0 @X0 1 s ]
+[i F2405
 :U ..
 :U ..
 &U _initPORTAD
 -> 0 `i
 -> 0 `i
+-> 15 `i
 ..
 ..
 ]
-[; ;main.c: 79: process init_PD = {initPORTAD, 0, 0};
-[e = _init_PD F2404 ]
-"83
-[v _ProcLedF `S276 ~T0 @X0 1 a ]
-[v F2407 `S276 ~T0 @X0 1 s ]
-[i F2407
-:U ..
-:U ..
-&U _toggle4F
--> 100 `i
--> 0 `i
-..
-..
-]
-[; ;main.c: 83: process ProcLedF = {toggle4F, 100, 0};
-[e = _ProcLedF F2407 ]
-"84
-[v _ProcLedL `S276 ~T0 @X0 1 a ]
-[v F2410 `S276 ~T0 @X0 1 s ]
-[i F2410
-:U ..
-:U ..
-&U _toggle4L
--> 200 `i
--> 0 `i
-..
-..
-]
-[; ;main.c: 84: process ProcLedL = {toggle4L, 200, 0};
-[e = _ProcLedL F2410 ]
+[; ;main.c: 79: process init_PD = {initPORTAD, 0, 0, 15};
+[e = _init_PD F2405 ]
 "86
 [v _SSDUpdate_proc `S276 ~T0 @X0 1 a ]
-[v F2413 `S276 ~T0 @X0 1 s ]
-[i F2413
+[v F2408 `S276 ~T0 @X0 1 s ]
+[i F2408
 :U ..
 :U ..
 &U _updateSSD
 -> 1 `i
 -> 0 `i
+-> 10 `i
 ..
 ..
 ]
-[; ;main.c: 86: process SSDUpdate_proc = {updateSSD, 1, 0};
-[e = _SSDUpdate_proc F2413 ]
+[; ;main.c: 86: process SSDUpdate_proc = {updateSSD, 1, 0, 10};
+[e = _SSDUpdate_proc F2408 ]
 "87
 [v _countTime_proc `S276 ~T0 @X0 1 a ]
-[v F2416 `S276 ~T0 @X0 1 s ]
-[i F2416
+[v F2411 `S276 ~T0 @X0 1 s ]
+[i F2411
 :U ..
 :U ..
 &U _countTime
 -> 100 `i
 -> 0 `i
+-> 5 `i
 ..
 ..
 ]
-[; ;main.c: 87: process countTime_proc = {countTime, 100, 0};
-[e = _countTime_proc F2416 ]
+[; ;main.c: 87: process countTime_proc = {countTime, 100, 0, 5};
+[e = _countTime_proc F2411 ]
 [; ;main.c: 89: timerInit();
 "89
 [e ( _timerInit ..  ]
@@ -3149,12 +3125,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 96: kernelAddProc(&init_PD);
 "96
 [e ( _kernelAddProc (1 &U _init_PD ]
-[; ;main.c: 99: kernelAddProc(&ProcLedL);
-"99
-[e ( _kernelAddProc (1 &U _ProcLedL ]
-[; ;main.c: 100: kernelAddProc(&ProcLedF);
-"100
-[e ( _kernelAddProc (1 &U _ProcLedF ]
 [; ;main.c: 102: kernelAddProc(&SSDUpdate_proc);
 "102
 [e ( _kernelAddProc (1 &U _SSDUpdate_proc ]

@@ -76,15 +76,15 @@ void main(void) {
     //process p1 = {t1, 100, 0};
     
     
-    process init_PD = {initPORTAD, 0, 0};//Comeca 'instanteamente'\
+    process init_PD = {initPORTAD, 0, 0, 15};//Comeca 'instanteamente'\
 
     // Aparentemente o periodo do processo eh um numero de periodos do kernelclock
     // Como o clock eh de 10ms, um periodo de 100 seria 1s ?
-    process ProcLedF = {toggle4F, 100, 0};
-    process ProcLedL = {toggle4L, 200, 0};
+    //process ProcLedF = {toggle4F, 100, 0};
+    //process ProcLedL = {toggle4L, 200, 0};
     
-    process SSDUpdate_proc = {updateSSD, 1, 0};
-    process countTime_proc = {countTime, 100, 0};
+    process SSDUpdate_proc = {updateSSD, 1, 0, 10};
+    process countTime_proc = {countTime, 100, 0, 5};
     
     timerInit();
     ssdInit();
@@ -96,8 +96,8 @@ void main(void) {
     kernelAddProc(&init_PD);
     //kernelAddProc(&p1);
     
-    kernelAddProc(&ProcLedL);
-    kernelAddProc(&ProcLedF);
+    //kernelAddProc(&ProcLedL);
+    //kernelAddProc(&ProcLedF);
     
     kernelAddProc(&SSDUpdate_proc);
     kernelAddProc(&countTime_proc);

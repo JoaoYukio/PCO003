@@ -4,7 +4,7 @@
 [d chip 18F4520 ]
 [d frameptr 4065 ]
 "6 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\drv_led.c
-[e E2380 . `uc
+[e E2381 . `uc
 LED_SET 0
 LED_FLIP 1
 LED_END 2
@@ -232,13 +232,13 @@ PIN_E7 39
 [v _digitalRead digitalRead `(i  1 e 2 0 ]
 "54
 [v _pinMode pinMode `(v  1 e 1 0 ]
-"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"8 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _kernelInit kernelInit `(uc  1 e 1 0 ]
-"13
+"14
 [v _kernelAddProc kernelAddProc `(uc  1 e 1 0 ]
-"24
+"25
 [v _kernelLoop kernelLoop `(v  1 e 1 0 ]
-"57
+"65
 [v _KernelClock KernelClock `(v  1 e 1 0 ]
 "31 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\lcd.c
 [v _Delay40us Delay40us `(v  1 e 1 0 ]
@@ -250,10 +250,6 @@ PIN_E7 39
 [v _ISR ISR `II(v  1 e 1 0 ]
 "29
 [v _initPORTAD initPORTAD `(uc  1 e 1 0 ]
-"35
-[v _toggle4F toggle4F `(uc  1 e 1 0 ]
-"41
-[v _toggle4L toggle4L `(uc  1 e 1 0 ]
 "47
 [v _updateSSD updateSSD `(uc  1 e 1 0 ]
 "54
@@ -356,25 +352,25 @@ PIN_E7 39
 [v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
 "6693
 [v _INTCON INTCON `VEuc  1 e 1 @4082 ]
-[s S154 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
+[s S148 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
 "5 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\drv_led.c
-[v _myself myself `S154  1 s 5 myself ]
+[v _myself myself `S148  1 s 5 myself ]
 "6
 [v _my_funcs my_funcs `[2]*.37(uc  1 s 4 my_funcs ]
-[s S44 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
-"4 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+[s S44 . 8 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 `i 1 prio 2 6 ]
+"5 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _pool pool `[10]*.39S44  1 e 20 0 ]
-"5
+"6
 [v _start start `uc  1 e 1 0 ]
 [v _end end `uc  1 e 1 0 ]
 "25 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\keypad.c
-[v _valor@keypad$F311 valor `ui  1 s 2 valor ]
+[v _valor@keypad$F305 valor `ui  1 s 2 valor ]
 "53 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\main.c
 [v _valor valor `i  1 e 2 0 ]
 "56 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\soft_i2c.c
 [v _started started `uc  1 e 1 0 ]
 "32 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\ssd.c
-[v _valor@ssd$F533 valor `C[16]uc  1 s 16 valor ]
+[v _valor@ssd$F527 valor `C[16]uc  1 s 16 valor ]
 "34
 [v _display display `uc  1 s 1 display ]
 "36
@@ -385,26 +381,18 @@ PIN_E7 39
 "75 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-[s S44 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+[s S44 . 8 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 `i 1 prio 2 6 ]
 "87
-[v main@countTime_proc countTime_proc `S44  1 a 6 24 ]
+[v main@countTime_proc countTime_proc `S44  1 a 8 16 ]
 "86
-[v main@SSDUpdate_proc SSDUpdate_proc `S44  1 a 6 18 ]
-"84
-[v main@ProcLedL ProcLedL `S44  1 a 6 12 ]
-"83
-[v main@ProcLedF ProcLedF `S44  1 a 6 6 ]
+[v main@SSDUpdate_proc SSDUpdate_proc `S44  1 a 8 8 ]
 "79
-[v main@init_PD init_PD `S44  1 a 6 0 ]
-[v main@F2404 F2404 `S44  1 s 6 F2404 ]
-"83
-[v main@F2407 F2407 `S44  1 s 6 F2407 ]
-"84
-[v main@F2410 F2410 `S44  1 s 6 F2410 ]
+[v main@init_PD init_PD `S44  1 a 8 0 ]
+[v main@F2405 F2405 `S44  1 s 8 F2405 ]
 "86
-[v main@F2413 F2413 `S44  1 s 6 F2413 ]
+[v main@F2408 F2408 `S44  1 s 8 F2408 ]
 "87
-[v main@F2416 F2416 `S44  1 s 6 F2416 ]
+[v main@F2411 F2411 `S44  1 s 8 F2411 ]
 "114
 } 0
 "51 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\timer.c
@@ -424,16 +412,16 @@ PIN_E7 39
 [v pinMode@type type `i  1 p 2 17 ]
 "73
 } 0
-"24 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"25 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _kernelLoop kernelLoop `(v  1 e 1 0 ]
 {
-[s S44 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
-"26
+[s S44 . 8 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 `i 1 prio 2 6 ]
+"27
 [v kernelLoop@tempProc tempProc `*.39S44  1 a 2 38 ]
-"25
+"26
 [v kernelLoop@p p `uc  1 a 1 41 ]
 [v kernelLoop@next next `uc  1 a 1 40 ]
-"53
+"61
 } 0
 "54 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\main.c
 [v _countTime countTime `(uc  1 e 1 0 ]
@@ -441,16 +429,6 @@ PIN_E7 39
 "57
 [v countTime@dig dig `i  1 a 2 29 ]
 "73
-} 0
-"41
-[v _toggle4L toggle4L `(uc  1 e 1 0 ]
-{
-"45
-} 0
-"35
-[v _toggle4F toggle4F `(uc  1 e 1 0 ]
-{
-"39
 } 0
 "29
 [v _initPORTAD initPORTAD `(uc  1 e 1 0 ]
@@ -474,12 +452,12 @@ PIN_E7 39
 [v digitalWrite@value value `i  1 p 2 17 ]
 "38
 } 0
-"13 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"14 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _kernelAddProc kernelAddProc `(uc  1 e 1 0 ]
 {
-[s S44 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+[s S44 . 8 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 `i 1 prio 2 6 ]
 [v kernelAddProc@newProc newProc `*.39S44  1 p 2 29 ]
-"22
+"23
 } 0
 "38 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\ssd.c
 [v _ssdDigit ssdDigit `(v  1 e 1 0 ]
@@ -514,22 +492,22 @@ PIN_E7 39
 [v ___awdiv@divisor divisor `i  1 p 2 17 ]
 "41
 } 0
-"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"8 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _kernelInit kernelInit `(uc  1 e 1 0 ]
 {
-"11
+"12
 } 0
 "10 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\main.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
 "22
 } 0
-"57 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"65 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _KernelClock KernelClock `(v  1 e 1 0 ]
 {
-"58
+"66
 [v KernelClock@proc proc `uc  1 a 1 8 ]
-"64
+"72
 } 0
 "7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awmod.c
 [v i2___awmod __awmod `(i  1 e 2 0 ]

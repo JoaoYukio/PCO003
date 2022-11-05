@@ -1,5 +1,6 @@
 #include "kernel.h"
 #include <pic18f4520.h>
+#include <stdlib.h>
 
 process* pool[POOLSIZE];
 char start, end;
@@ -28,12 +29,19 @@ void kernelLoop(void) {
         //Do we have any process to execute?
         if (start != end) {
             //Find the process with the lowest timer
+            //Agora vemos tambem qual a menor prioridade, tentar implementar Lista de adjacencia
             next = start;
-            for (p = start; p != end; p = (p + 1) % POOLSIZE) {
+            /*for (p = start; p != end; p = (p + 1) % POOLSIZE) {
                 if (pool[p]->start < pool[next]->start) {
                     next = p;
                 }
+            }*/
+            for (p = start; p != end; p = (p + 1) % POOLSIZE) {
+                if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
+                    next = p;
+                }
             }
+            
             //Exchanging processes positions
             tempProc = pool[next];
             pool[next] = pool[start];

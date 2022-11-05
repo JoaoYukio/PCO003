@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F2370 `(uc ~T0 @X0 0 tf1`*v ]
+[v F2371 `(uc ~T0 @X0 0 tf1`*v ]
 "8 dd_types.h
-[s S277 `uc 1 `**F2370 1 `*F2370 1 ]
+[s S277 `uc 1 `**F2371 1 `*F2371 1 ]
 [n S277 . id funcoes initFunc ]
 "6 drv_led.c
-[c E2380 0 1 2 .. ]
-[n E2380 . LED_SET LED_FLIP LED_END  ]
+[c E2381 0 1 2 .. ]
+[n E2381 . LED_SET LED_FLIP LED_END  ]
 "633 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 "2144
@@ -15,11 +15,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;kernel.h: 23: ptrFunc function;
 [; ;kernel.h: 24: int period;
 [; ;kernel.h: 25: int start;
-[; ;kernel.h: 26: } process;
-[; ;kernel.h: 30: char kernelInit(void);
-[; ;kernel.h: 31: char kernelAddProc(process* newProc);
-[; ;kernel.h: 32: void kernelLoop(void);
-[; ;kernel.h: 34: void KernelClock(void);
+[; ;kernel.h: 26: int prio;
+[; ;kernel.h: 27: } process;
+[; ;kernel.h: 31: char kernelInit(void);
+[; ;kernel.h: 32: char kernelAddProc(process* newProc);
+[; ;kernel.h: 33: void kernelLoop(void);
+[; ;kernel.h: 35: void KernelClock(void);
 [; ;xc8\pic\include\proc\pic18f4520.h: 53: extern volatile unsigned char PORTA __at(0xF80);
 "55 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [; ;xc8\pic\include\proc\pic18f4520.h: 55: asm("PORTA equ 0F80h");
@@ -2801,7 +2802,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _myself `S277 ~T0 @X0 1 s ]
 [; ;drv_led.c: 5: static driver myself;
 "6
-[v _my_funcs `*F2370 ~T0 @X0 . `E2380 2 s ]
+[v _my_funcs `*F2371 ~T0 @X0 . `E2381 2 s ]
 [; ;drv_led.c: 6: static ptrFuncDrv my_funcs[LED_END];
 "7
 [v _changePORTD `(uc ~T0 @X0 1 ef1`*v ]
@@ -2874,10 +2875,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . _myself 2 &U _initGenerico ]
 [; ;drv_led.c: 23: my_funcs[LED_SET] = changePORTD;
 "23
-[e = *U + &U _my_funcs * -> . `E2380 0 `ux -> -> # *U &U _my_funcs `ui `ux &U _changePORTD ]
+[e = *U + &U _my_funcs * -> . `E2381 0 `ux -> -> # *U &U _my_funcs `ui `ux &U _changePORTD ]
 [; ;drv_led.c: 24: my_funcs[LED_FLIP] = inverte;
 "24
-[e = *U + &U _my_funcs * -> . `E2380 1 `ux -> -> # *U &U _my_funcs `ui `ux &U _inverte ]
+[e = *U + &U _my_funcs * -> . `E2381 1 `ux -> -> # *U &U _my_funcs `ui `ux &U _inverte ]
 [; ;drv_led.c: 25: myself.funcoes = my_funcs;
 "25
 [e = . _myself 1 &U _my_funcs ]
