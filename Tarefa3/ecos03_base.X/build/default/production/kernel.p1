@@ -2927,114 +2927,115 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 292  ]
 [e :U 289 ]
 {
-[; ;kernel.c: 40: if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
-"40
-[e $ ! && > . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 3 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 3 < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 293  ]
-{
-[; ;kernel.c: 41: next = p;
-"41
+[; ;kernel.c: 50: if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
+"50
+[e $ ! && == . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 > . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 3 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 3 293  ]
 [e = _next _p ]
-"42
-}
+[e $U 294  ]
+"51
 [e :U 293 ]
-"43
+[; ;kernel.c: 51: else if(pool[p]->start < pool[next]->start)next = p;
+[e $ ! < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 295  ]
+[e = _next _p ]
+[e :U 295 ]
+"52
+[e :U 294 ]
 }
 "39
 [e = _p -> % + -> _p `i -> 1 `i -> 10 `i `uc ]
 [e :U 292 ]
 [e $ != -> _p `i -> _end `i 289  ]
 [e :U 290 ]
-"43
+"52
 }
-[; ;kernel.c: 42: }
-[; ;kernel.c: 43: }
-[; ;kernel.c: 46: tempProc = pool[next];
-"46
-[e = _tempProc *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux ]
-[; ;kernel.c: 47: pool[next] = pool[start];
-"47
-[e = *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
-[; ;kernel.c: 48: pool[start] = tempProc;
-"48
-[e = *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux _tempProc ]
-[; ;kernel.c: 51: while (pool[start]->start > 0) {
-"51
-[e $U 294  ]
-[e :U 295 ]
-{
-"53
-}
-[e :U 294 ]
-"51
-[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 295  ]
-[e :U 296 ]
-[; ;kernel.c: 53: }
-[; ;kernel.c: 54: if (pool[start]->function() == 2) {
-"54
-[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 297  ]
-{
-[; ;kernel.c: 55: kernelAddProc(pool[start]);
+[; ;kernel.c: 52: }
+[; ;kernel.c: 55: tempProc = pool[next];
 "55
-[e ( _kernelAddProc (1 *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
+[e = _tempProc *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux ]
+[; ;kernel.c: 56: pool[next] = pool[start];
 "56
-}
-[e :U 297 ]
-[; ;kernel.c: 56: }
-[; ;kernel.c: 57: start = (start + 1) % 10;
+[e = *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
+[; ;kernel.c: 57: pool[start] = tempProc;
 "57
+[e = *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux _tempProc ]
+[; ;kernel.c: 60: while (pool[start]->start > 0) {
+"60
+[e $U 296  ]
+[e :U 297 ]
+{
+"62
+}
+[e :U 296 ]
+"60
+[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 297  ]
+[e :U 298 ]
+[; ;kernel.c: 62: }
+[; ;kernel.c: 63: if (pool[start]->function() == 2) {
+"63
+[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 299  ]
+{
+[; ;kernel.c: 64: kernelAddProc(pool[start]);
+"64
+[e ( _kernelAddProc (1 *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
+"65
+}
+[e :U 299 ]
+[; ;kernel.c: 65: }
+[; ;kernel.c: 66: start = (start + 1) % 10;
+"66
 [e = _start -> % + -> _start `i -> 1 `i -> 10 `i `uc ]
-"58
+"67
 }
 [e :U 288 ]
-"60
+"69
 }
-[; ;kernel.c: 58: }
-[; ;kernel.c: 60: }
+[; ;kernel.c: 67: }
+[; ;kernel.c: 69: }
 [e $U 285  ]
 [e :U 286 ]
 }
-[; ;kernel.c: 61: }
-"61
+[; ;kernel.c: 70: }
+"70
 [e :UE 284 ]
 }
-"65
+"74
 [v _KernelClock `(v ~T0 @X0 1 ef ]
 {
-[; ;kernel.c: 65: void KernelClock(void) {
+[; ;kernel.c: 74: void KernelClock(void) {
 [e :U _KernelClock ]
 [f ]
-"66
+"75
 [v _proc `uc ~T0 @X0 1 a ]
-[; ;kernel.c: 66: unsigned char proc;
-[; ;kernel.c: 67: for (proc = start; proc != end; proc = (proc + 1) % 10) {
-"67
+[; ;kernel.c: 75: unsigned char proc;
+[; ;kernel.c: 76: for (proc = start; proc != end; proc = (proc + 1) % 10) {
+"76
 {
 [e = _proc _start ]
-[e $U 302  ]
-[e :U 299 ]
+[e $U 304  ]
+[e :U 301 ]
 {
-[; ;kernel.c: 68: if ((pool[proc]->start)>(-30000)) {
-"68
-[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 303  ]
+[; ;kernel.c: 77: if ((pool[proc]->start)>(-30000)) {
+"77
+[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 305  ]
 {
-[; ;kernel.c: 69: pool[proc]->start--;
-"69
+[; ;kernel.c: 78: pool[proc]->start--;
+"78
 [e -- . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -> 1 `i ]
-"70
+"79
 }
-[e :U 303 ]
-"71
+[e :U 305 ]
+"80
 }
-"67
+"76
 [e = _proc -> % + -> _proc `i -> 1 `i -> 10 `i `uc ]
+[e :U 304 ]
+[e $ != -> _proc `i -> _end `i 301  ]
 [e :U 302 ]
-[e $ != -> _proc `i -> _end `i 299  ]
-[e :U 300 ]
-"71
+"80
 }
-[; ;kernel.c: 70: }
-[; ;kernel.c: 71: }
-[; ;kernel.c: 72: }
-"72
-[e :UE 298 ]
+[; ;kernel.c: 79: }
+[; ;kernel.c: 80: }
+[; ;kernel.c: 81: }
+"81
+[e :UE 300 ]
 }

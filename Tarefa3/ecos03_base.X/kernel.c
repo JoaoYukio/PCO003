@@ -37,9 +37,18 @@ void kernelLoop(void) {
                 }
             }*/
             for (p = start; p != end; p = (p + 1) % POOLSIZE) {
-                if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
+                // Acho que aqui, na primeira iteracao nao vai trocar
+                /*if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
                     next = p;
-                }
+                }*/
+                /*
+                if ((pool[p]->start <= pool[next]->start))
+                {
+                    if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
+                    else if(pool[p]->start < pool[next]->start)next = p;
+                }*/
+                if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
+                if(pool[p]->start < pool[next]->start)next = p;
             }
             
             //Exchanging processes positions

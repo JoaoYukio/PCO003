@@ -43,8 +43,8 @@ int count = 0;
 
 char processo4()
 {
-    count++;
-    printf("PCO003 - %d\n", count);
+    //count++;
+    printf("PCO003 - %d\n", ++count);
     return REPEAT;
 }
 

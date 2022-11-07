@@ -238,7 +238,7 @@ PIN_E7 39
 [v _kernelAddProc kernelAddProc `(uc  1 e 1 0 ]
 "25
 [v _kernelLoop kernelLoop `(v  1 e 1 0 ]
-"65
+"74
 [v _KernelClock KernelClock `(v  1 e 1 0 ]
 "31 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\lcd.c
 [v _Delay40us Delay40us `(v  1 e 1 0 ]
@@ -421,7 +421,7 @@ PIN_E7 39
 "26
 [v kernelLoop@p p `uc  1 a 1 41 ]
 [v kernelLoop@next next `uc  1 a 1 40 ]
-"61
+"70
 } 0
 "54 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\main.c
 [v _countTime countTime `(uc  1 e 1 0 ]
@@ -502,12 +502,12 @@ PIN_E7 39
 {
 "22
 } 0
-"65 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
+"74 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa3\ecos03_base.X\kernel.c
 [v _KernelClock KernelClock `(v  1 e 1 0 ]
 {
-"66
+"75
 [v KernelClock@proc proc `uc  1 a 1 8 ]
-"72
+"81
 } 0
 "7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\awmod.c
 [v i2___awmod __awmod `(i  1 e 2 0 ]
