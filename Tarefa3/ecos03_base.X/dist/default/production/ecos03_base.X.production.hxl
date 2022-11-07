@@ -11,13 +11,13 @@
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\ecos03_base.X.production.hex)
   8h - 11h		(dist/default/production\ecos03_base.X.production.hex)
-  600h - 1499h		(dist/default/production\ecos03_base.X.production.hex)
+  600h - 1495h		(dist/default/production\ecos03_base.X.production.hex)
   200000h - 200007h		(dist/default/production\ecos03_base.X.production.hex)
   300000h - 30000Dh		(dist/default/production\ecos03_base.X.production.hex)
  Unused ranges:
   4h - 7h
   12h - 5FFh
-  149Ah - 1FFFFFh
+  1496h - 1FFFFFh
   200008h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -263,7 +263,7 @@
 00001460 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001470 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001480 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001490 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- --
+00001490 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------

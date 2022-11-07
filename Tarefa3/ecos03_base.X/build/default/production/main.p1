@@ -3092,11 +3092,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 &U _updateSSD
 -> 1 `i
 -> 0 `i
--> 10 `i
+-> 5 `i
 ..
 ..
 ]
-[; ;main.c: 86: process SSDUpdate_proc = {updateSSD, 1, 0, 10};
+[; ;main.c: 86: process SSDUpdate_proc = {updateSSD, 1, 0, 5};
 [e = _SSDUpdate_proc F2408 ]
 "87
 [v _countTime_proc `S276 ~T0 @X0 1 a ]
@@ -3107,11 +3107,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 &U _countTime
 -> 100 `i
 -> 0 `i
--> 5 `i
+-> 10 `i
 ..
 ..
 ]
-[; ;main.c: 87: process countTime_proc = {countTime, 100, 0, 5};
+[; ;main.c: 87: process countTime_proc = {countTime, 100, 0, 10};
 [e = _countTime_proc F2411 ]
 [; ;main.c: 89: timerInit();
 "89

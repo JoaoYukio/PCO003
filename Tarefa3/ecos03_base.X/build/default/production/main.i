@@ -4545,8 +4545,8 @@ void main(void) {
 process init_PD = {initPORTAD, 0, 0, 15};
 
 # 86
-process SSDUpdate_proc = {updateSSD, 1, 0, 10};
-process countTime_proc = {countTime, 100, 0, 5};
+process SSDUpdate_proc = {updateSSD, 1, 0, 5};
+process countTime_proc = {countTime, 100, 0, 10};
 
 timerInit();
 ssdInit();

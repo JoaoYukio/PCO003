@@ -83,8 +83,8 @@ void main(void) {
     //process ProcLedF = {toggle4F, 100, 0};
     //process ProcLedL = {toggle4L, 200, 0};
     
-    process SSDUpdate_proc = {updateSSD, 1, 0, 10};
-    process countTime_proc = {countTime, 100, 0, 5};
+    process SSDUpdate_proc = {updateSSD, 1, 0, 5};
+    process countTime_proc = {countTime, 100, 0, 10};
     
     timerInit();
     ssdInit();
