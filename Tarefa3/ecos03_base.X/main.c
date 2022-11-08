@@ -11,8 +11,9 @@ void __interrupt ISR(void) {
     //TIMER0: Overflow
     if (bitTst(INTCON, 2)) {
         // 65535 = 2*10.000 = 10mS
-        TMR0H = (45535 >> 8);
-        TMR0L = (45535 & 0x00FF);
+        //Alterei para 1ms o clock
+        TMR0H = (63535 >> 8);
+        TMR0L = (63535 & 0x00FF);
 
         KernelClock();
 
@@ -83,8 +84,8 @@ void main(void) {
     //process ProcLedF = {toggle4F, 100, 0};
     //process ProcLedL = {toggle4L, 200, 0};
     
-    process SSDUpdate_proc = {updateSSD, 1, 0, 5};
-    process countTime_proc = {countTime, 100, 0, 10};
+    process SSDUpdate_proc = {updateSSD, 5, 0, 5};
+    process countTime_proc = {countTime, 1000, 0, 10};
     
     timerInit();
     ssdInit();

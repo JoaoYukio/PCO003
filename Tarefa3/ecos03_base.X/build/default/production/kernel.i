@@ -4536,8 +4536,8 @@ next = start;
 for (p = start; p != end; p = (p + 1) % 10) {
 
 # 50
-if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
-if(pool[p]->start < pool[next]->start)next = p;
+if((pool[p]->start <= 0 && pool[next]->start <= 0) && (pool[p]->prio > pool[next]->prio))next = p;
+else if(pool[p]->start < pool[next]->start)next = p;
 }
 
 

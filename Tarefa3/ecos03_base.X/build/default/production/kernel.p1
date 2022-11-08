@@ -2927,17 +2927,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 292  ]
 [e :U 289 ]
 {
-[; ;kernel.c: 50: if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
+[; ;kernel.c: 50: if((pool[p]->start <= 0 && pool[next]->start <= 0) && (pool[p]->prio > pool[next]->prio))next = p;
 "50
-[e $ ! && == . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 > . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 3 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 3 293  ]
+[e $ ! && && <= . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i <= . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i > . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 3 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 3 293  ]
 [e = _next _p ]
-[e :U 293 ]
-[; ;kernel.c: 51: if(pool[p]->start < pool[next]->start)next = p;
+[e $U 294  ]
 "51
-[e $ ! < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 294  ]
+[e :U 293 ]
+[; ;kernel.c: 51: else if(pool[p]->start < pool[next]->start)next = p;
+[e $ ! < . *U *U + &U _pool * -> _p `ux -> -> # *U &U _pool `ui `ux 2 . *U *U + &U _pool * -> _next `ux -> -> # *U &U _pool `ui `ux 2 295  ]
 [e = _next _p ]
-[e :U 294 ]
+[e :U 295 ]
 "52
+[e :U 294 ]
 }
 "39
 [e = _p -> % + -> _p `i -> 1 `i -> 10 `i `uc ]
@@ -2958,26 +2960,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux _tempProc ]
 [; ;kernel.c: 60: while (pool[start]->start > 0) {
 "60
-[e $U 295  ]
-[e :U 296 ]
+[e $U 296  ]
+[e :U 297 ]
 {
 "62
 }
-[e :U 295 ]
+[e :U 296 ]
 "60
-[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 296  ]
-[e :U 297 ]
+[e $ > . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 2 -> 0 `i 297  ]
+[e :U 298 ]
 [; ;kernel.c: 62: }
 [; ;kernel.c: 63: if (pool[start]->function() == 2) {
 "63
-[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 298  ]
+[e $ ! == -> ( *U . *U *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux 0 ..  `i -> 2 `i 299  ]
 {
 [; ;kernel.c: 64: kernelAddProc(pool[start]);
 "64
 [e ( _kernelAddProc (1 *U + &U _pool * -> _start `ux -> -> # *U &U _pool `ui `ux ]
 "65
 }
-[e :U 298 ]
+[e :U 299 ]
 [; ;kernel.c: 65: }
 [; ;kernel.c: 66: start = (start + 1) % 10;
 "66
@@ -3009,31 +3011,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 "76
 {
 [e = _proc _start ]
-[e $U 303  ]
-[e :U 300 ]
+[e $U 304  ]
+[e :U 301 ]
 {
 [; ;kernel.c: 77: if ((pool[proc]->start)>(-30000)) {
 "77
-[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 304  ]
+[e $ ! > . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -U -> 30000 `i 305  ]
 {
 [; ;kernel.c: 78: pool[proc]->start--;
 "78
 [e -- . *U *U + &U _pool * -> _proc `ux -> -> # *U &U _pool `ui `ux 2 -> 1 `i ]
 "79
 }
-[e :U 304 ]
+[e :U 305 ]
 "80
 }
 "76
 [e = _proc -> % + -> _proc `i -> 1 `i -> 10 `i `uc ]
-[e :U 303 ]
-[e $ != -> _proc `i -> _end `i 300  ]
-[e :U 301 ]
+[e :U 304 ]
+[e $ != -> _proc `i -> _end `i 301  ]
+[e :U 302 ]
 "80
 }
 [; ;kernel.c: 79: }
 [; ;kernel.c: 80: }
 [; ;kernel.c: 81: }
 "81
-[e :UE 299 ]
+[e :UE 300 ]
 }

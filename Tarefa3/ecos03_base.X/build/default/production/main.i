@@ -4477,8 +4477,9 @@ void __interrupt ISR(void) {
 
 if (((INTCON) & (1<<(2)))) {
 
-TMR0H = (45535 >> 8);
-TMR0L = (45535 & 0x00FF);
+
+TMR0H = (63535 >> 8);
+TMR0L = (63535 & 0x00FF);
 
 KernelClock();
 
@@ -4544,9 +4545,9 @@ void main(void) {
 
 process init_PD = {initPORTAD, 0, 0, 15};
 
-# 86
-process SSDUpdate_proc = {updateSSD, 1, 0, 5};
-process countTime_proc = {countTime, 100, 0, 10};
+# 87
+process SSDUpdate_proc = {updateSSD, 5, 0, 5};
+process countTime_proc = {countTime, 1000, 0, 10};
 
 timerInit();
 ssdInit();
@@ -4557,7 +4558,7 @@ ssdInit();
 kernelInit();
 kernelAddProc(&init_PD);
 
-# 102
+# 103
 kernelAddProc(&SSDUpdate_proc);
 kernelAddProc(&countTime_proc);
 
