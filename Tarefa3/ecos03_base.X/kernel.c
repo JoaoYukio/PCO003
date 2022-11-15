@@ -29,7 +29,6 @@ void kernelLoop(void) {
         //Do we have any process to execute?
         if (start != end) {
             //Find the process with the lowest timer
-            //Agora vemos tambem qual a menor prioridade, tentar implementar Lista de adjacencia
             next = start;
             /*for (p = start; p != end; p = (p + 1) % POOLSIZE) {
                 if (pool[p]->start < pool[next]->start) {
@@ -37,16 +36,6 @@ void kernelLoop(void) {
                 }
             }*/
             for (p = start; p != end; p = (p + 1) % POOLSIZE) {
-                // Acho que aqui, na primeira iteracao nao vai trocar
-                /*if ((pool[p]->prio > pool[next]->prio) && (pool[p]->start < pool[next]->start)) {
-                    next = p;
-                }*/
-                /*
-                if ((pool[p]->start <= pool[next]->start))
-                {
-                    if((pool[p]->start == pool[next]->start) && (pool[p]->prio > pool[next]->prio))next = p;
-                    else if(pool[p]->start < pool[next]->start)next = p;
-                }*/
                 if((pool[p]->start <= 0 && pool[next]->start <= 0) && (pool[p]->prio > pool[next]->prio))next = p;
                 else if(pool[p]->start < pool[next]->start)next = p;
             }
