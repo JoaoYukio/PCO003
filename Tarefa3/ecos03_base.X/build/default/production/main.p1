@@ -30,6 +30,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _kernelAddProc `(uc ~T0 @X0 0 ef1`*S276 ]
 "5655 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
 [v _RCON `Vuc ~T0 @X0 0 e@4048 ]
+"25 lcd.h
+[v _lcdInit `(v ~T0 @X0 0 ef ]
+"23
+[v _lcdCommand `(v ~T0 @X0 0 ef1`uc ]
+"24
+[v _lcdData `(v ~T0 @X0 0 ef1`uc ]
 "33 kernel.h
 [v _kernelLoop `(v ~T0 @X0 0 ef ]
 "26 config.h
@@ -2884,194 +2890,197 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ssd.h: 22: void ssdDigit(char val, char pos);
 [; ;ssd.h: 23: void ssdUpdate(void);
 [; ;ssd.h: 24: void ssdInit(void);
+[; ;lcd.h: 23: void lcdCommand(unsigned char cmd);
+[; ;lcd.h: 24: void lcdData(unsigned char valor);
+[; ;lcd.h: 25: void lcdInit(void);
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-[v F2387 `(v ~T0 @X0 1 tf ]
-"10 main.c
-[v _ISR `IF2387 ~T0 @X0 1 e ]
+[v F2393 `(v ~T0 @X0 1 tf ]
+"11 main.c
+[v _ISR `IF2393 ~T0 @X0 1 e ]
 {
-[; ;main.c: 10: void __interrupt ISR(void) {
+[; ;main.c: 11: void __interrupt ISR(void) {
 [e :U _ISR ]
 [f ]
-[; ;main.c: 12: if (((INTCON) & (1<<(2)))) {
-"12
+[; ;main.c: 13: if (((INTCON) & (1<<(2)))) {
+"13
 [e $ ! != & -> _INTCON `i << -> 1 `i -> 2 `i -> 0 `i 278  ]
 {
-[; ;main.c: 15: TMR0H = (63535 >> 8);
-"15
-[e = _TMR0H -> >> -> 63535 `l -> 8 `i `uc ]
-[; ;main.c: 16: TMR0L = (63535 & 0x00FF);
+[; ;main.c: 16: TMR0H = (63535 >> 8);
 "16
+[e = _TMR0H -> >> -> 63535 `l -> 8 `i `uc ]
+[; ;main.c: 17: TMR0L = (63535 & 0x00FF);
+"17
 [e = _TMR0L -> & -> 63535 `l -> -> 255 `i `l `uc ]
-[; ;main.c: 18: KernelClock();
-"18
+[; ;main.c: 19: KernelClock();
+"19
 [e ( _KernelClock ..  ]
-[; ;main.c: 21: ((INTCON) &= ~(1<<(2)));
-"21
-[e =& _INTCON -> ~ << -> 1 `i -> 2 `i `uc ]
+[; ;main.c: 22: ((INTCON) &= ~(1<<(2)));
 "22
+[e =& _INTCON -> ~ << -> 1 `i -> 2 `i `uc ]
+"23
 }
 [e :U 278 ]
-[; ;main.c: 22: }
 [; ;main.c: 23: }
-"23
+[; ;main.c: 24: }
+"24
 [e :UE 277 ]
 }
-"25
+"26
 [v _t1 `(uc ~T0 @X0 1 ef ]
 {
-[; ;main.c: 25: char t1(void) {
+[; ;main.c: 26: char t1(void) {
 [e :U _t1 ]
 [f ]
-[; ;main.c: 26: PORTD = PORTD + 1;
-"26
-[e = _PORTD -> + -> _PORTD `i -> 1 `i `uc ]
-[; ;main.c: 27: return 2;
+[; ;main.c: 27: PORTD = PORTD + 1;
 "27
+[e = _PORTD -> + -> _PORTD `i -> 1 `i `uc ]
+[; ;main.c: 28: return 2;
+"28
 [e ) -> -> 2 `i `uc ]
 [e $UE 279  ]
-[; ;main.c: 28: }
-"28
+[; ;main.c: 29: }
+"29
 [e :UE 279 ]
 }
-"30
-[v _initPORTAD `(uc ~T0 @X0 1 ef ]
 "31
+[v _initPORTAD `(uc ~T0 @X0 1 ef ]
+"32
 {
-[; ;main.c: 30: char initPORTAD(void)
-[; ;main.c: 31: {
+[; ;main.c: 31: char initPORTAD(void)
+[; ;main.c: 32: {
 [e :U _initPORTAD ]
 [f ]
-[; ;main.c: 32: TRISD = 0x00;
-"32
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 33: return 0;
+[; ;main.c: 33: TRISD = 0x00;
 "33
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 34: return 0;
+"34
 [e ) -> -> 0 `i `uc ]
 [e $UE 280  ]
-[; ;main.c: 34: }
-"34
+[; ;main.c: 35: }
+"35
 [e :UE 280 ]
 }
-"36
-[v _toggle4F `(uc ~T0 @X0 1 ef ]
 "37
+[v _toggle4F `(uc ~T0 @X0 1 ef ]
+"38
 {
-[; ;main.c: 36: char toggle4F(void)
-[; ;main.c: 37: {
+[; ;main.c: 37: char toggle4F(void)
+[; ;main.c: 38: {
 [e :U _toggle4F ]
 [f ]
-[; ;main.c: 38: PORTD ^= 0x0F;
-"38
-[e =^ _PORTD -> -> 15 `i `uc ]
-[; ;main.c: 39: return 2;
+[; ;main.c: 39: PORTD ^= 0x0F;
 "39
+[e =^ _PORTD -> -> 15 `i `uc ]
+[; ;main.c: 40: return 2;
+"40
 [e ) -> -> 2 `i `uc ]
 [e $UE 281  ]
-[; ;main.c: 40: }
-"40
+[; ;main.c: 41: }
+"41
 [e :UE 281 ]
 }
-"42
-[v _toggle4L `(uc ~T0 @X0 1 ef ]
 "43
+[v _toggle4L `(uc ~T0 @X0 1 ef ]
+"44
 {
-[; ;main.c: 42: char toggle4L(void)
-[; ;main.c: 43: {
+[; ;main.c: 43: char toggle4L(void)
+[; ;main.c: 44: {
 [e :U _toggle4L ]
 [f ]
-[; ;main.c: 44: PORTD ^= 0xF0;
-"44
-[e =^ _PORTD -> -> 240 `i `uc ]
-[; ;main.c: 45: return 2;
+[; ;main.c: 45: PORTD ^= 0xF0;
 "45
+[e =^ _PORTD -> -> 240 `i `uc ]
+[; ;main.c: 46: return 2;
+"46
 [e ) -> -> 2 `i `uc ]
 [e $UE 282  ]
-[; ;main.c: 46: }
-"46
+[; ;main.c: 47: }
+"47
 [e :UE 282 ]
 }
-"48
-[v _updateSSD `(uc ~T0 @X0 1 ef ]
 "49
+[v _updateSSD `(uc ~T0 @X0 1 ef ]
+"50
 {
-[; ;main.c: 48: char updateSSD(void)
-[; ;main.c: 49: {
+[; ;main.c: 49: char updateSSD(void)
+[; ;main.c: 50: {
 [e :U _updateSSD ]
 [f ]
-[; ;main.c: 50: ssdUpdate();
-"50
-[e ( _ssdUpdate ..  ]
-[; ;main.c: 51: return 2;
+[; ;main.c: 51: ssdUpdate();
 "51
+[e ( _ssdUpdate ..  ]
+[; ;main.c: 52: return 2;
+"52
 [e ) -> -> 2 `i `uc ]
 [e $UE 283  ]
-[; ;main.c: 52: }
-"52
+[; ;main.c: 53: }
+"53
 [e :UE 283 ]
 }
-"54
+"55
 [v _valor `i ~T0 @X0 1 e ]
 [i _valor
 -> 0 `i
 ]
-[; ;main.c: 54: int valor = 0;
-"55
-[v _countTime `(uc ~T0 @X0 1 ef ]
+[; ;main.c: 55: int valor = 0;
 "56
+[v _countTime `(uc ~T0 @X0 1 ef ]
+"57
 {
-[; ;main.c: 55: char countTime(void)
-[; ;main.c: 56: {
+[; ;main.c: 56: char countTime(void)
+[; ;main.c: 57: {
 [e :U _countTime ]
 [f ]
-[; ;main.c: 57: valor++;
-"57
-[e ++ _valor -> 1 `i ]
+[; ;main.c: 58: valor++;
 "58
+[e ++ _valor -> 1 `i ]
+"59
 [v _dig `i ~T0 @X0 1 a ]
-[; ;main.c: 58: int dig;
-[; ;main.c: 62: dig = (valor)%10;
-"62
-[e = _dig % _valor -> 10 `i ]
-[; ;main.c: 63: ssdDigit(dig, 3);
+[; ;main.c: 59: int dig;
+[; ;main.c: 63: dig = (valor)%10;
 "63
+[e = _dig % _valor -> 10 `i ]
+[; ;main.c: 64: ssdDigit(dig, 3);
+"64
 [e ( _ssdDigit (2 , -> _dig `uc -> -> 3 `i `uc ]
-[; ;main.c: 65: dig = (valor/10)%10;
-"65
-[e = _dig % / _valor -> 10 `i -> 10 `i ]
-[; ;main.c: 66: ssdDigit(dig, 2);
+[; ;main.c: 66: dig = (valor/10)%10;
 "66
+[e = _dig % / _valor -> 10 `i -> 10 `i ]
+[; ;main.c: 67: ssdDigit(dig, 2);
+"67
 [e ( _ssdDigit (2 , -> _dig `uc -> -> 2 `i `uc ]
-[; ;main.c: 68: dig = (valor/100)%10;
-"68
-[e = _dig % / _valor -> 100 `i -> 10 `i ]
-[; ;main.c: 69: ssdDigit(dig, 1);
+[; ;main.c: 69: dig = (valor/100)%10;
 "69
+[e = _dig % / _valor -> 100 `i -> 10 `i ]
+[; ;main.c: 70: ssdDigit(dig, 1);
+"70
 [e ( _ssdDigit (2 , -> _dig `uc -> -> 1 `i `uc ]
-[; ;main.c: 71: dig = (valor/1000)%10;
-"71
-[e = _dig % / _valor -> 1000 `i -> 10 `i ]
-[; ;main.c: 72: ssdDigit(dig, 0);
+[; ;main.c: 72: dig = (valor/1000)%10;
 "72
-[e ( _ssdDigit (2 , -> _dig `uc -> -> 0 `i `uc ]
-[; ;main.c: 73: return 2;
+[e = _dig % / _valor -> 1000 `i -> 10 `i ]
+[; ;main.c: 73: ssdDigit(dig, 0);
 "73
+[e ( _ssdDigit (2 , -> _dig `uc -> -> 0 `i `uc ]
+[; ;main.c: 74: return 2;
+"74
 [e ) -> -> 2 `i `uc ]
 [e $UE 284  ]
-[; ;main.c: 74: }
-"74
+[; ;main.c: 75: }
+"75
 [e :UE 284 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"76
+"77
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 76: void main(void) {
+[; ;main.c: 77: void main(void) {
 [e :U _main ]
 [f ]
-"80
+"81
 [v _init_PD `S276 ~T0 @X0 1 a ]
-[v F2405 `S276 ~T0 @X0 1 s ]
-[i F2405
+[v F2411 `S276 ~T0 @X0 1 s ]
+[i F2411
 :U ..
 :U ..
 &U _initPORTAD
@@ -3081,12 +3090,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 80: process init_PD = {initPORTAD, 0, 0, 15};
-[e = _init_PD F2405 ]
-"87
+[; ;main.c: 81: process init_PD = {initPORTAD, 0, 0, 15};
+[e = _init_PD F2411 ]
+"88
 [v _SSDUpdate_proc `S276 ~T0 @X0 1 a ]
-[v F2408 `S276 ~T0 @X0 1 s ]
-[i F2408
+[v F2414 `S276 ~T0 @X0 1 s ]
+[i F2414
 :U ..
 :U ..
 &U _updateSSD
@@ -3096,12 +3105,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 87: process SSDUpdate_proc = {updateSSD, 5, 0, 5};
-[e = _SSDUpdate_proc F2408 ]
-"88
+[; ;main.c: 88: process SSDUpdate_proc = {updateSSD, 5, 0, 5};
+[e = _SSDUpdate_proc F2414 ]
+"89
 [v _countTime_proc `S276 ~T0 @X0 1 a ]
-[v F2411 `S276 ~T0 @X0 1 s ]
-[i F2411
+[v F2417 `S276 ~T0 @X0 1 s ]
+[i F2417
 :U ..
 :U ..
 &U _countTime
@@ -3111,42 +3120,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 88: process countTime_proc = {countTime, 1000, 0, 10};
-[e = _countTime_proc F2411 ]
-[; ;main.c: 90: timerInit();
-"90
-[e ( _timerInit ..  ]
-[; ;main.c: 91: ssdInit();
+[; ;main.c: 89: process countTime_proc = {countTime, 1000, 0, 10};
+[e = _countTime_proc F2417 ]
+[; ;main.c: 91: timerInit();
 "91
+[e ( _timerInit ..  ]
+[; ;main.c: 92: ssdInit();
+"92
 [e ( _ssdInit ..  ]
-[; ;main.c: 96: kernelInit();
-"96
-[e ( _kernelInit ..  ]
-[; ;main.c: 97: kernelAddProc(&init_PD);
+[; ;main.c: 97: kernelInit();
 "97
+[e ( _kernelInit ..  ]
+[; ;main.c: 98: kernelAddProc(&init_PD);
+"98
 [e ( _kernelAddProc (1 &U _init_PD ]
-[; ;main.c: 103: kernelAddProc(&SSDUpdate_proc);
-"103
-[e ( _kernelAddProc (1 &U _SSDUpdate_proc ]
-[; ;main.c: 104: kernelAddProc(&countTime_proc);
+[; ;main.c: 104: kernelAddProc(&SSDUpdate_proc);
 "104
+[e ( _kernelAddProc (1 &U _SSDUpdate_proc ]
+[; ;main.c: 105: kernelAddProc(&countTime_proc);
+"105
 [e ( _kernelAddProc (1 &U _countTime_proc ]
-[; ;main.c: 108: ((RCON) &= ~(1<<(7)));
-"108
-[e =& _RCON -> ~ << -> 1 `i -> 7 `i `uc ]
-[; ;main.c: 109: ((INTCON) |= (1<<(5)));
+[; ;main.c: 109: ((RCON) &= ~(1<<(7)));
 "109
-[e =| _INTCON -> << -> 1 `i -> 5 `i `uc ]
-[; ;main.c: 110: ((INTCON) |= (1<<(7)));
+[e =& _RCON -> ~ << -> 1 `i -> 7 `i `uc ]
+[; ;main.c: 110: ((INTCON) |= (1<<(5)));
 "110
-[e =| _INTCON -> << -> 1 `i -> 7 `i `uc ]
-[; ;main.c: 111: ((INTCON) |= (1<<(6)));
+[e =| _INTCON -> << -> 1 `i -> 5 `i `uc ]
+[; ;main.c: 111: ((INTCON) |= (1<<(7)));
 "111
+[e =| _INTCON -> << -> 1 `i -> 7 `i `uc ]
+[; ;main.c: 112: ((INTCON) |= (1<<(6)));
+"112
 [e =| _INTCON -> << -> 1 `i -> 6 `i `uc ]
-[; ;main.c: 114: kernelLoop();
+[; ;main.c: 114: lcdInit();
 "114
-[e ( _kernelLoop ..  ]
-[; ;main.c: 115: }
+[e ( _lcdInit ..  ]
+[; ;main.c: 115: lcdCommand(0x01);
 "115
+[e ( _lcdCommand (1 -> -> 1 `i `uc ]
+[; ;main.c: 116: lcdData('O');
+"116
+[e ( _lcdData (1 -> -> 79 `ui `uc ]
+[; ;main.c: 117: lcdCommand(0x06);
+"117
+[e ( _lcdCommand (1 -> -> 6 `i `uc ]
+[; ;main.c: 118: lcdData('i');
+"118
+[e ( _lcdData (1 -> -> 105 `ui `uc ]
+[; ;main.c: 121: kernelLoop();
+"121
+[e ( _kernelLoop ..  ]
+[; ;main.c: 122: }
+"122
 [e :UE 285 ]
 }

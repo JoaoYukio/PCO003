@@ -4,6 +4,7 @@
 #include "timer.h"
 #include "bits.h"
 #include "ssd.h"
+#include "lcd.h"
 
 //interrupt setup
 
@@ -110,6 +111,12 @@ void main(void) {
     bitSet(INTCON, 7); // habilita todas as interrupções globais
     bitSet(INTCON, 6); // habilita todas as interrupções de perifericos
 
+    lcdInit();
+    lcdCommand(0x01);
+    lcdData('O');
+    lcdCommand(0x06);
+    lcdData('i');
 
+    
     kernelLoop();
 }

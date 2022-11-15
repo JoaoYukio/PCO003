@@ -4472,7 +4472,12 @@ void ssdDigit(char val, char pos);
 void ssdUpdate(void);
 void ssdInit(void);
 
-# 10 "main.c"
+# 23 "lcd.h"
+void lcdCommand(unsigned char cmd);
+void lcdData(unsigned char valor);
+void lcdInit(void);
+
+# 11 "main.c"
 void __interrupt ISR(void) {
 
 if (((INTCON) & (1<<(2)))) {
@@ -4545,7 +4550,7 @@ void main(void) {
 
 process init_PD = {initPORTAD, 0, 0, 15};
 
-# 87
+# 88
 process SSDUpdate_proc = {updateSSD, 5, 0, 5};
 process countTime_proc = {countTime, 1000, 0, 10};
 
@@ -4558,7 +4563,7 @@ ssdInit();
 kernelInit();
 kernelAddProc(&init_PD);
 
-# 103
+# 104
 kernelAddProc(&SSDUpdate_proc);
 kernelAddProc(&countTime_proc);
 
@@ -4568,6 +4573,12 @@ kernelAddProc(&countTime_proc);
 ((INTCON) |= (1<<(5)));
 ((INTCON) |= (1<<(7)));
 ((INTCON) |= (1<<(6)));
+
+lcdInit();
+lcdCommand(0x01);
+lcdData('O');
+lcdCommand(0x06);
+lcdData('i');
 
 
 kernelLoop();
