@@ -1,0 +1,614 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4520 ]
+[d frameptr 4065 ]
+"47 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[e E2395 . `uc
+LCD_CMD 0
+LCD_DATA 1
+LCD_END 2
+]
+"6 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_led.c
+[e E2380 . `uc
+LED_SET 0
+LED_FLIP 1
+LED_END 2
+]
+"27 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\adc.c
+[e E2357 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"56 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[e E2359 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"20 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\soft_i2c.c
+[e E10 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"60 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\ssd.c
+[e E8 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[e E2380 . `uc
+LCD_CMD 0
+LCD_DATA 1
+LCD_END 2
+]
+"7 C:\Microchip\xc8\pic\sources\c90\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"7 C:\Microchip\xc8\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Microchip\xc8\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+[v i2___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Microchip\xc8\pic\sources\c90\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Microchip\xc8\pic\sources\c90\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Microchip\xc8\pic\sources\c90\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Microchip\xc8\pic\sources\c90\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Microchip\xc8\pic\sources\c90\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Microchip\xc8\pic\sources\c90\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"7 C:\Microchip\xc8\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"10 C:\Microchip\xc8\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Microchip\xc8\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Microchip\xc8\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Microchip\xc8\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Microchip\xc8\pic\sources\c90\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Microchip\xc8\pic\sources\c90\common\Umul64.c
+[v ___omul __omul `(ul  1 e 4 0 ]
+"9 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _initGenerico2 initGenerico2 `(uc  1 e 1 0 ]
+"15
+[v _command command `(uc  1 e 1 0 ]
+"22
+[v _data data `(uc  1 e 1 0 ]
+"8 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\dd_types.h
+[s S33 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
+"30 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _getLcdDriver2 getLcdDriver2 `(*.39S33  1 e 2 0 ]
+"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_led.c
+[v _changePORTD changePORTD `(uc  1 e 1 0 ]
+"11
+[v _inverte inverte `(uc  1 e 1 0 ]
+"16
+[v _initGenerico initGenerico `(uc  1 e 1 0 ]
+"24 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\ds1307.c
+[v _dsWriteData dsWriteData `(v  1 e 1 0 ]
+"29
+[v _dsReadData dsReadData `(i  1 e 2 0 ]
+"14 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\io.c
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+"39
+[v _digitalRead digitalRead `(i  1 e 2 0 ]
+"54
+[v _pinMode pinMode `(v  1 e 1 0 ]
+"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _kernelInit kernelInit `(uc  1 e 1 0 ]
+"13
+[v _kernelAddProc kernelAddProc `(uc  1 e 1 0 ]
+"24
+[v _kernelLoop kernelLoop `(v  1 e 1 0 ]
+"57
+[v _KernelClock KernelClock `(v  1 e 1 0 ]
+"31 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[v _Delay40us Delay40us `(v  1 e 1 0 ]
+"37
+[v _Delay2ms Delay2ms `(v  1 e 1 0 ]
+"48
+[v _lcdCommand lcdCommand `(v  1 e 1 0 ]
+"74
+[v _lcdData lcdData `(v  1 e 1 0 ]
+"95
+[v _lcdInit lcdInit `(v  1 e 1 0 ]
+"11 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+"34
+[v _counter counter `(uc  1 e 1 0 ]
+"45
+[v _updateLCD updateLCD `(uc  1 e 1 0 ]
+"74
+[v _main main `(v  1 e 1 0 ]
+"44 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\pwm.c
+[v _pwmFrequency pwmFrequency `(v  1 e 1 0 ]
+"18 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\soft_i2c.c
+[v _i2cInit i2cInit `(v  1 e 1 0 ]
+"26
+[v _I2C_delay I2C_delay `(v  1 e 1 0 ]
+"33
+[v _read_SCL read_SCL `(uc  1 e 1 0 ]
+"38
+[v _read_SDA read_SDA `(uc  1 e 1 0 ]
+"44
+[v _clear_SCL clear_SCL `(v  1 e 1 0 ]
+"50
+[v _clear_SDA clear_SDA `(v  1 e 1 0 ]
+"57
+[v _i2c_start i2c_start `(v  1 e 1 0 ]
+"76
+[v _i2c_stop i2c_stop `(v  1 e 1 0 ]
+"89
+[v _i2c_write_bit i2c_write_bit `(v  1 e 1 0 ]
+"105
+[v _i2c_read_bit i2c_read_bit `(uc  1 e 1 0 ]
+"118
+[v _i2cWriteByte i2cWriteByte `(uc  1 e 1 0 ]
+"136
+[v _i2cReadByte i2cReadByte `(uc  1 e 1 0 ]
+"51 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\timer.c
+[v _timerInit timerInit `(v  1 e 1 0 ]
+"53 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+"272
+[v _PORTB PORTB `VEuc  1 e 1 @3969 ]
+"451
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+"633
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+"775
+[v _PORTE PORTE `VEuc  1 e 1 @3972 ]
+"1478
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1700
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1922
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2144
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2366
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"2672
+[v _PIR1 PIR1 `VEuc  1 e 1 @3998 ]
+"3111
+[v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
+"3321
+[v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
+"3577
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"3589
+[v _RCREG RCREG `VEuc  1 e 1 @4014 ]
+"3601
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"3613
+[v _SPBRGH SPBRGH `VEuc  1 e 1 @4016 ]
+"4222
+[v _BAUDCON BAUDCON `VEuc  1 e 1 @4024 ]
+"4502
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
+"4606
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"4620
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"4776
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"4902
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"4909
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"5316
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"5414
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"5655
+[v _RCON RCON `VEuc  1 e 1 @4048 ]
+"6169
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"6259
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"6266
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+"6693
+[v _INTCON INTCON `VEuc  1 e 1 @4082 ]
+[s S33 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
+"6 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _myself@drv_lcd2$F558 myself `S33  1 s 5 myself ]
+"7
+[v _my_funcs@drv_lcd2$F562 my_funcs `[2]*.37(uc  1 s 4 my_funcs ]
+"5 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_led.c
+[v _myself myself `S33  1 s 5 myself ]
+"6
+[v _my_funcs my_funcs `[2]*.37(uc  1 s 4 my_funcs ]
+[s S46 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+"4 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _pool pool `[10]*.39S46  1 e 20 0 ]
+"5
+[v _start start `uc  1 e 1 0 ]
+[v _end end `uc  1 e 1 0 ]
+"25 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\keypad.c
+[v _valor valor `ui  1 s 2 valor ]
+"30 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[v _count count `i  1 e 2 0 ]
+"31
+[v _seg seg `i  1 e 2 0 ]
+"32
+[v _min min `i  1 e 2 0 ]
+"33
+[v _hora hora `i  1 e 2 0 ]
+[s S33 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
+"43
+[v _lcd lcd `*.39S33  1 e 2 0 ]
+"56 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\soft_i2c.c
+[v _started started `uc  1 e 1 0 ]
+"32 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\ssd.c
+[v _valor@ssd$F521 valor `C[16]uc  1 s 16 valor ]
+"34
+[v _display display `uc  1 s 1 display ]
+"36
+[v _v0 v0 `uc  1 s 1 v0 ]
+[v _v1 v1 `uc  1 s 1 v1 ]
+[v _v2 v2 `uc  1 s 1 v2 ]
+[v _v3 v3 `uc  1 s 1 v3 ]
+"74 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+[s S46 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+"76
+[v main@p2 p2 `S46  1 a 6 10 ]
+"75
+[v main@p1 p1 `S46  1 a 6 4 ]
+[v main@F2424 F2424 `S46  1 s 6 F2424 ]
+"76
+[v main@F2427 F2427 `S46  1 s 6 F2427 ]
+"118
+} 0
+"51 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\timer.c
+[v _timerInit timerInit `(v  1 e 1 0 ]
+{
+"55
+} 0
+"24 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _kernelLoop kernelLoop `(v  1 e 1 0 ]
+{
+[s S46 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+"26
+[v kernelLoop@tempProc tempProc `*.39S46  1 a 2 0 ]
+"25
+[v kernelLoop@p p `uc  1 a 1 3 ]
+[v kernelLoop@next next `uc  1 a 1 2 ]
+"53
+} 0
+"34 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[v _counter counter `(uc  1 e 1 0 ]
+{
+"41
+} 0
+"45
+[v _updateLCD updateLCD `(uc  1 e 1 0 ]
+{
+"71
+} 0
+"22 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _data data `(uc  1 e 1 0 ]
+{
+"24
+[v data@valor valor `uc  1 a 1 31 ]
+"22
+[v data@parameters parameters `*.39v  1 p 2 29 ]
+"27
+} 0
+"15
+[v _command command `(uc  1 e 1 0 ]
+{
+"17
+[v command@cmd cmd `uc  1 a 1 31 ]
+"15
+[v command@parameters parameters `*.39v  1 p 2 29 ]
+"20
+} 0
+"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_led.c
+[v _changePORTD changePORTD `(uc  1 e 1 0 ]
+{
+[v changePORTD@parameters parameters `*.39v  1 p 2 29 ]
+"10
+} 0
+"11
+[v _inverte inverte `(uc  1 e 1 0 ]
+{
+"15
+} 0
+"74 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[v _lcdData lcdData `(v  1 e 1 0 ]
+{
+[v lcdData@valor valor `uc  1 a 1 wreg ]
+"77
+[v lcdData@old_D old_D `uc  1 a 1 22 ]
+"74
+[v lcdData@valor valor `uc  1 a 1 wreg ]
+"78
+[v lcdData@valor valor `uc  1 a 1 21 ]
+"92
+} 0
+"13 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _kernelAddProc kernelAddProc `(uc  1 e 1 0 ]
+{
+[s S46 . 6 `*.37(uc 1 function 2 0 `i 1 period 2 2 `i 1 start 2 4 ]
+[v kernelAddProc@newProc newProc `*.39S46  1 p 2 29 ]
+"22
+} 0
+"7 C:\Microchip\xc8\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 28 ]
+[v ___awmod@counter counter `uc  1 a 1 27 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 23 ]
+[v ___awmod@divisor divisor `i  1 p 2 25 ]
+"34
+} 0
+"7 C:\Microchip\xc8\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 21 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 20 ]
+[v ___awdiv@counter counter `uc  1 a 1 19 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 15 ]
+[v ___awdiv@divisor divisor `i  1 p 2 17 ]
+"41
+} 0
+"7 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _kernelInit kernelInit `(uc  1 e 1 0 ]
+{
+"11
+} 0
+"16 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_led.c
+[v _initGenerico initGenerico `(uc  1 e 1 0 ]
+{
+[v initGenerico@parameters parameters `*.2v  1 p 2 23 ]
+"20
+} 0
+"9 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _initGenerico2 initGenerico2 `(uc  1 e 1 0 ]
+{
+[v initGenerico2@parameters parameters `*.2v  1 p 2 23 ]
+"13
+} 0
+"95 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[v _lcdInit lcdInit `(v  1 e 1 0 ]
+{
+"116
+} 0
+"54 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\io.c
+[v _pinMode pinMode `(v  1 e 1 0 ]
+{
+[v pinMode@pin pin `i  1 p 2 15 ]
+[v pinMode@type type `i  1 p 2 17 ]
+"73
+} 0
+"48 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[v _lcdCommand lcdCommand `(v  1 e 1 0 ]
+{
+[v lcdCommand@cmd cmd `uc  1 a 1 wreg ]
+"50
+[v lcdCommand@old_D old_D `uc  1 a 1 21 ]
+"48
+[v lcdCommand@cmd cmd `uc  1 a 1 wreg ]
+"51
+[v lcdCommand@cmd cmd `uc  1 a 1 22 ]
+"72
+} 0
+"14 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\io.c
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+{
+[v digitalWrite@pin pin `i  1 p 2 15 ]
+[v digitalWrite@value value `i  1 p 2 17 ]
+"38
+} 0
+"37 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\lcd.c
+[v _Delay2ms Delay2ms `(v  1 e 1 0 ]
+{
+"39
+[v Delay2ms@i i `uc  1 a 1 16 ]
+"44
+} 0
+"31
+[v _Delay40us Delay40us `(v  1 e 1 0 ]
+{
+"33
+[v Delay40us@i i `uc  1 a 1 15 ]
+"35
+} 0
+"8 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\dd_types.h
+[s S33 . 5 `uc 1 id 1 0 `*.39*.37(uc 1 funcoes 2 1 `*.37(uc 1 initFunc 2 3 ]
+"30 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\drv_lcd2.c
+[v _getLcdDriver2 getLcdDriver2 `(*.39S33  1 e 2 0 ]
+{
+"36
+} 0
+"11 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\main.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"23
+} 0
+"57 D:\Mestrado Unifei\1º Semestre (2022.2)\PCO003 - SISTEMAS OPERACIONAIS\PCO003\Tarefa4\ecos03_base_tar4.X\kernel.c
+[v _KernelClock KernelClock `(v  1 e 1 0 ]
+{
+"58
+[v KernelClock@proc proc `uc  1 a 1 8 ]
+"64
+} 0
+"7 C:\Microchip\xc8\pic\sources\c90\common\awmod.c
+[v i2___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v i2___awmod@sign sign `uc  1 a 1 5 ]
+[v i2___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v i2___awmod@dividend dividend `i  1 p 2 0 ]
+[v i2___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
